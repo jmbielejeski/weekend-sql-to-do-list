@@ -1,9 +1,24 @@
-# Project Name
+# To Do List
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+Duration - 1 weekend
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+Created an application to allow a user to create their own To Do list. It includes the functionality to delete or mark as complete an item on the list.
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+## Installation
+
+## Usage
+
+- create To Do's
+- Keep track of To Do's
+- Update To Do's to complete or delete entirely
+
+## Built With
+
+- HTML/CSS
+- Javascript
+- jQuery
+- Express
+- Node.js
+- PostgreSQL
