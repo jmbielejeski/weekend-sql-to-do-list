@@ -11,5 +11,26 @@
   </head>
   <body>
     <h1>To Do List</h1>
+    <h2>Add to do item</h2>
+    <form action="">
+      <!--
+          Need some inputs
+        -->
+      <label for="taskInput">Enter Task:</label>
+      <input name="taskInput" type="text" id="task" placeholder="To Do Item" />
+
+      <section id="toDoTable">
+        <table>
+          <thead>
+            <tr>
+              <th>To Do</th>
+              <th>Complete</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody id="viewTasks"></tbody>
+        </table>
+      </section>
+    </form>
   </body>
 </html>
