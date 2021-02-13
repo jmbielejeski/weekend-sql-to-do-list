@@ -7,6 +7,7 @@ function onReady() {
   getToDoList();
 
   $(document).on('click', '#addButton', addTask);
+  $(document).on('click', '.delete', deleteTask);
 }
 
 // get todo list
@@ -32,6 +33,8 @@ function postList(toDoList) {
       <tr>
         <td id="newToDo">${toDo.task}</td>
         <td id="newComplete">${toDo.complete}</td>
+        <td><button class="complete" data-id="${toDo.id}">Mark complete</button></td>
+        <td><button class="delete" data-id="${toDo.id}">Delete</button></td>
       </tr>
     `);
   }
@@ -54,5 +57,23 @@ function addTask() {
     .catch((error) => {
       console.log('error adding task', error);
       alert('Task not added');
+    });
+}
+
+function deleteTask() {
+  // put task id into a variable
+  let taskId = $(this).data('id');
+
+  // send delete request to server
+  $.ajax({
+    type: 'DELETE',
+    url: `/toDo/remove/${taskId}`,
+  })
+    .then((response) => {
+      getToDoList(); // render update list to DOM
+    })
+    .catch((error) => {
+      console.log('failed to delete task', error);
+      alert('Could not delete task, please try again');
     });
 }

@@ -51,6 +51,24 @@ router.post('/', (req, res) => {
 });
 
 // DELETE
+router.delete('/remove/:id', (req, res) => {
+  console.log('in DELETE');
+
+  let taskId = req.params.id;
+
+  let sqlText = `
+    DELETE FROM "todo" WHERE "id"=$1;
+  `;
+  pool
+    .query(sqlText, [taskId])
+    .then((resDB) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('error in deleting task', error);
+      res.sendStatus(500);
+    });
+});
 
 // PUT
 
