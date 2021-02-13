@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 // POST
 router.post('/', (req, res) => {
   console.log('in POST, req.body is', req.body);
-  // DELETE
+
   let sqlText = `
   INSERT INTO "todo"
     ("task", "complete")
@@ -49,5 +49,9 @@ router.post('/', (req, res) => {
       res.sendStatus(500);
     });
 });
+
+// DELETE
+
+// PUT
 
 module.exports = router;
