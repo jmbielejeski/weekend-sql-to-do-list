@@ -31,12 +31,12 @@ router.post('/', (req, res) => {
 
   let sqlText = `
   INSERT INTO "todo"
-    ("task", "complete")
+    ("task")
     VALUES
-    ($1, $2); -- placeholder values to prevent SQL Injection
+    ($1); -- placeholder values to prevent SQL Injection
 `;
 
-  let queryArs = [req.body.task, req.body.complete];
+  let queryArs = [req.body.task];
 
   pool
     .query(sqlText, queryArs)
