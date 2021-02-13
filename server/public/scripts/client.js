@@ -8,6 +8,7 @@ function onReady() {
 
   $(document).on('click', '#addButton', addTask);
   $(document).on('click', '.delete', deleteTask);
+  $(document).on('click', '.complete', changeToComplete);
 }
 
 // get todo list
@@ -26,14 +27,23 @@ function getToDoList() {
 function postList(toDoList) {
   // empty the list
   $('#viewTasks').empty();
-
+  let completeBtn = '';
+  let completeStatus = '';
   // loop through list
   for (const toDo of toDoList) {
+    if (toDo.complete == false) {
+      completeBtn = `<button class="complete" data-id="${toDo.id}">Mark complete</button>`;
+      completeStatus = 'Incomplete';
+    } else if (toDo.complete == true) {
+      completeBtn = '';
+      completeStatus = 'complete';
+    }
     $('#viewTasks').append(`
       <tr>
         <td id="newToDo">${toDo.task}</td>
         <td id="newComplete">${toDo.complete}</td>
-        <td><button class="complete" data-id="${toDo.id}">Mark complete</button></td>
+        <td>${completeStatus}</td>
+        <td>${completeBtn}</td>
         <td><button class="delete" data-id="${toDo.id}">Delete</button></td>
       </tr>
     `);
@@ -44,6 +54,7 @@ function postList(toDoList) {
 function addTask() {
   let newTask = {
     task: $('#task').val(),
+    complete: $('#complete').val(),
   };
   $.ajax({
     type: 'POST',
@@ -53,6 +64,7 @@ function addTask() {
     .then((res) => {
       console.log(res);
       getToDoList();
+      clearInputs();
     })
     .catch((error) => {
       console.log('error adding task', error);
@@ -76,4 +88,24 @@ function deleteTask() {
       console.log('failed to delete task', error);
       alert('Could not delete task, please try again');
     });
+}
+
+function changeToComplete() {
+  let completeId = $(this).data('id');
+
+  $.ajax({
+    type: 'PUT',
+    url: `/toDo/ready/${completeId}`,
+  })
+    .then((response) => {
+      getToDoList();
+    })
+    .catch((error) => {
+      console.log('error updated status', error);
+      alert('task not marked as completed');
+    });
+}
+
+function clearInputs() {
+  $('#task').val('');
 }

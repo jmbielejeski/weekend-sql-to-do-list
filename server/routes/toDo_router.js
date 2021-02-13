@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 // GET the current database
 router.get('/', (req, res) => {
-  console.log('in GET route');
+  // console.log('in GET route');
   // pool is our DB connection
   pool
     .query(
@@ -15,19 +15,19 @@ router.get('/', (req, res) => {
   `
     )
     .then(function (dbRes) {
-      console.log('dbRes rows is ', dbRes.rows);
+      // console.log('dbRes rows is ', dbRes.rows);
       // send back DB results
       res.send(dbRes.rows);
     })
     .catch(function (error) {
-      console.log('error getting DB table', error);
+      // console.log('error getting DB table', error);
       res.sendStatus(500);
     });
 });
 
 // POST
 router.post('/', (req, res) => {
-  console.log('in POST, req.body is', req.body);
+  // console.log('in POST, req.body is', req.body);
 
   let sqlText = `
   INSERT INTO "todo"
@@ -41,18 +41,18 @@ router.post('/', (req, res) => {
   pool
     .query(sqlText, queryArs)
     .then(function (dbRes) {
-      console.log('dbRes', dbRes);
+      // console.log('dbRes', dbRes);
       res.sendStatus(200);
     })
     .catch(function (error) {
-      console.log('error in POST', error);
+      // console.log('error in POST', error);
       res.sendStatus(500);
     });
 });
 
 // DELETE
 router.delete('/remove/:id', (req, res) => {
-  console.log('in DELETE');
+  // console.log('in DELETE');
 
   let taskId = req.params.id;
 
@@ -65,11 +65,31 @@ router.delete('/remove/:id', (req, res) => {
       res.sendStatus(200);
     })
     .catch((error) => {
-      console.log('error in deleting task', error);
+      // console.log('error in deleting task', error);
       res.sendStatus(500);
     });
 });
 
 // PUT
+router.put('/ready/:id', (req, res) => {
+  // store id of what is changing into variable
+  let completeId = req.params.id;
+  let completed = req.body.transferBoolean;
+
+  console.log(completed);
+
+  let sqlText = `UPDATE "todo" SET "complete"=TRUE WHERE "id"=$1`;
+
+  pool
+    .query(sqlText, [completeId])
+    .then((resDB) => {
+      console.log('in PUT resDB is', resDB);
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('error in PUT', error);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;
