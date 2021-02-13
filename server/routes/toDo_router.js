@@ -26,7 +26,28 @@ router.get('/', (req, res) => {
 });
 
 // POST
+router.post('/', (req, res) => {
+  console.log('in POST, req.body is', req.body);
+  // DELETE
+  let sqlText = `
+  INSERT INTO "todo"
+    ("task", "complete")
+    VALUES
+    ($1, $2); -- placeholder values to prevent SQL Injection
+`;
 
-// DELETE
+  let queryArs = [req.body.task, req.body.complete];
+
+  pool
+    .query(sqlText, queryArs)
+    .then(function (dbRes) {
+      console.log('dbRes', dbRes);
+      res.sendStatus(200);
+    })
+    .catch(function (error) {
+      console.log('error in POST', error);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;
