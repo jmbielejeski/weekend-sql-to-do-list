@@ -35,16 +35,16 @@ function postList(toDoList) {
       completeBtn = `<button class="complete" data-id="${toDo.id}">Mark complete</button>`;
       completeStatus = 'incomplete';
     } else if (toDo.complete == true) {
-      completeBtn = '';
+      completeBtn = `<div>Task complete! </div>`;
       completeStatus = 'complete';
     }
+
     $('#viewTasks').append(`
-      
-        <li class="displayCompleteStatus" id=${completeStatus}>${toDo.task}
-        <span>${completeBtn}</span>
-        <span><button class="delete" data-id="${toDo.id}">Delete</button></span>
-        </li>
-      
+      <tr>
+        <td>${completeBtn}</td>
+        <td class="displayCompleteStatus" id=${completeStatus}>${toDo.task} </td>
+        <td><button class="delete" data-id="${toDo.id}">Delete</button></td>
+      </tr>
     `);
   }
 }

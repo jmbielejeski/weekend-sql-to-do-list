@@ -21,9 +21,16 @@
         <input name="taskInput" type="text" id="task" placeholder="Title..." />
         <span><button type="button" id="addButton">Add</button></span>
       </section>
-      <section id="toDoList">
-        <ul id="viewTasks"></ul>
-      </section>
+      <table id="toDoList">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Task</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="viewTasks"></tbody>
+      </table>
     </main>
   </body>
 </html>

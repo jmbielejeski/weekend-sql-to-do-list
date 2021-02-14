@@ -14,14 +14,16 @@ h1 {
   background-color: #36c8f4;
   text-align: center;
   margin: 0;
+  margin-bottom: 2rem;
   border: none;
   border-radius: 0;
-  padding: 10px;
+  padding: 20px;
+  padding-bottom: 2rem;
   font-size: 16px;
 }
 
 #task {
-  width: 25rem;
+  width: 20rem;
   text-align: center;
   font-size: 16px;
   padding: 10px;
@@ -31,18 +33,25 @@ h1 {
   box-sizing: border-box;
   padding: 10px;
   width: 10rem;
-  background: #d9d9d9;
+  background: rgba(64, 161, 64, 0.66);
   color: #555;
   text-align: center;
   font-size: 16px;
   cursor: pointer;
   transition: 0.3s;
   border-radius: 0;
-  background-color: greenyellow;
 }
 
 #complete {
-  background-color: rgba(64, 161, 64, 0.66);
+  background-color: #36c8f4;
+  text-decoration: line-through;
+}
+
+.complete {
+  float: left;
+  transition: all 0.15s;
+  width: 7rem;
+  height: 1.5rem;
 }
 
 #incomplete {
@@ -58,19 +67,39 @@ button {
   text-align: center;
   border: none;
   border-radius: 0;
-  padding: 10px;
+  padding: 0;
   font-size: 16px;
 }
 
 #viewTasks .displayCompleteStatus {
-  text-align: left;
+  text-align: center;
+  padding: 1rem;
 }
 
-ul {
-  list-style-type: none;
+table {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+td {
+  width: fit-content;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .delete {
   float: right;
-  background-color: red;
+  background-color: rgba(255, 5, 5, 0.886);
+  border: 0.1em solid #000000;
+  border-radius: 0.12em;
+  font-size: 14px;
+  transition: all 0.15s;
+  width: 6rem;
+  height: 2rem;
 }
