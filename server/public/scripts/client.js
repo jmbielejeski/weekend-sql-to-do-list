@@ -33,19 +33,18 @@ function postList(toDoList) {
   for (const toDo of toDoList) {
     if (toDo.complete == false) {
       completeBtn = `<button class="complete" data-id="${toDo.id}">Mark complete</button>`;
-      completeStatus = 'Incomplete';
+      completeStatus = 'incomplete';
     } else if (toDo.complete == true) {
       completeBtn = '';
       completeStatus = 'complete';
     }
     $('#viewTasks').append(`
-      <tr>
-        <td id="newToDo">${toDo.task}</td>
-        <td id="newComplete">${toDo.complete}</td>
-        <td>${completeStatus}</td>
-        <td>${completeBtn}</td>
-        <td><button class="delete" data-id="${toDo.id}">Delete</button></td>
-      </tr>
+      
+        <li class="displayCompleteStatus" id=${completeStatus}>${toDo.task}
+        <span>${completeBtn}</span>
+        <span><button class="delete" data-id="${toDo.id}">Delete</button></span>
+        </li>
+      
     `);
   }
 }

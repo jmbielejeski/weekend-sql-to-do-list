@@ -11,33 +11,31 @@
   </head>
   <body>
     <h1>To Do List</h1>
-    <h2>Add to do item</h2>
+
     <main>
       <!--
           Need some inputs
         -->
-      <section>
-        <label for="taskInput">Enter Task:</label>
-        <input
-          name="taskInput"
-          type="text"
-          id="task"
-          placeholder="To Do Item"
-        />
-        <button type="button" id="addButton">Submit task</button>
+      <section id="inputArea">
+        <label for="taskInput"></label>
+        <input name="taskInput" type="text" id="task" placeholder="Title..." />
+        <span><button type="button" id="addButton">Add</button></span>
       </section>
-      <section id="toDoTable">
-        <table>
-          <thead>
-            <tr>
-              <th>To Do</th>
-              <th>Complete</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody id="viewTasks"></tbody>
-        </table>
+      <section id="toDoList">
+        <ul id="viewTasks"></ul>
       </section>
     </main>
   </body>
 </html>
+<!--
+<table>
+  <thead>
+    <tr>
+      <th>To Do</th>
+      <th>Complete</th>
+      <th>Complete Button</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+</table>
+-->
